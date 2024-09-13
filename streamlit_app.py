@@ -90,5 +90,4 @@ if prompt := st.chat_input():
 
     with st.chat_message('assistant'):
         st.session_state.messages.append({"role": "user", "content": prompt}) 
-        st.session_state.messages.append({"role": "assistant", "content": st.write_stream(get_response(client, _model, st.session_state.messages))})
-                
+        st.session_state.messages.append({"role": "assistant", "content": st.write_stream(get_response(client, _model, st.session_state.messages))})                

@@ -2,35 +2,6 @@ from openai import OpenAI
 import streamlit as st
 import os
 
-def select_label(option):
-    match option:
-        case "qwen2:7b-instruct":
-            return 'Qwen2-7B模型(无限制)⭐⭐'
-        case "llama3.1:8b-instruct-q6_K":
-            return 'llama3.1-8b模型(无限制)⭐⭐'
-        case "gpt-4o":
-           return 'gpt-4o模型⭐⭐⭐⭐'
-        case "gpt-4o-mini":
-           return 'gpt-4o-mini模型⭐⭐⭐'
-        case "meta-llama-3.1-70b-instruct":
-            return 'llama3.1-70b模型⭐⭐⭐'
-        case "meta-llama-3.1-405b-instruct":
-            return 'llama3.1-405b模型⭐⭐⭐⭐'
-        case "Qwen/Qwen2-72B-Instruct":
-            return 'Qwen2-72B模型⭐⭐⭐'
-        case "Qwen/Qwen2-7B-Instruct":
-            return 'Qwen2-7B模型⭐⭐'
-        case "THUDM/glm-4-9b-chat":
-            return 'glm4-9b模型⭐'
-        case "cohere-command-r-plus":
-            return 'cohere模型⭐⭐'
-        case "claude-3-haiku":
-            return 'claude-3-haiku模型⭐⭐'
-        case "llama-3.1-70b":
-            return 'llama-3.1-70b模型⭐⭐'
-        case _:
-            return '🐻'
-
 def select_change():
     del st.session_state.messages
 
@@ -49,9 +20,8 @@ def get_response(client, model, messages):
 with st.sidebar:
     _model = st.selectbox(
         "选择对话模型",
-        ("claude-3-haiku", "llama-3.1-70b", "qwen2:7b-instruct", "llama3.1:8b-instruct-q6_K", "gpt-4o", "gpt-4o-mini", "meta-llama-3.1-70b-instruct", "meta-llama-3.1-405b-instruct","Qwen/Qwen2-72B-Instruct", "Qwen/Qwen2-7B-Instruct", "THUDM/glm-4-9b-chat"),
-        8,
-        format_func=select_label,
+        ("gpt-4o", "gpt-4o-mini", "meta-llama-3.1-405b-instruct", "claude-3-haiku", "llama-3.1-70b", "Qwen/Qwen2-72B-Instruct", "qwen2:7b-instruct", "llama3.1:8b-instruct-q6_K"),
+        0,
         on_change =select_change,
     )
 

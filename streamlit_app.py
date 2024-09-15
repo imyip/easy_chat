@@ -24,6 +24,10 @@ def select_label(option):
             return 'glm4-9b模型⭐'
         case "cohere-command-r-plus":
             return 'cohere模型⭐⭐'
+        case "claude-3-haiku":
+            return 'claude-3-haiku模型⭐⭐'
+        case "llama-3.1-70b":
+            return 'llama-3.1-70b模型⭐⭐'
         case _:
             return '🐻'
 

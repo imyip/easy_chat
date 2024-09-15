@@ -45,8 +45,8 @@ def get_response(client, model, messages):
 with st.sidebar:
     _model = st.selectbox(
         "选择对话模型",
-        ("qwen2:7b-instruct", "llama3.1:8b-instruct-q6_K", "gpt-4o", "gpt-4o-mini", "meta-llama-3.1-70b-instruct", "meta-llama-3.1-405b-instruct","Qwen/Qwen2-72B-Instruct", "Qwen/Qwen2-7B-Instruct", "THUDM/glm-4-9b-chat"),
-        7,
+        ("claude-3-haiku", "llama-3.1-70b", "qwen2:7b-instruct", "llama3.1:8b-instruct-q6_K", "gpt-4o", "gpt-4o-mini", "meta-llama-3.1-70b-instruct", "meta-llama-3.1-405b-instruct","Qwen/Qwen2-72B-Instruct", "Qwen/Qwen2-7B-Instruct", "THUDM/glm-4-9b-chat"),
+        8,
         format_func=select_label,
         on_change =select_change,
     )
@@ -73,7 +73,7 @@ if prompt := st.chat_input():
     if _model in ["qwen2:7b-instruct", "llama3.1:8b-instruct-q6_K"]:
         _api_key = 'ollama'
         _base_url = os.environ.get('OLLAMA_URL')
-    elif _model in ["gpt-4o", "gpt-4o-mini", "cohere-command-r-plus", "meta-llama-3.1-70b-instruct"]:
+    elif _model in ["gpt-4o", "cohere-command-r-plus", "meta-llama-3.1-70b-instruct"]:
         _api_key =  os.environ.get('GITHUB_MODEL_KEY')
         _base_url = 'https://models.inference.ai.azure.com'
     elif _model in ["THUDM/glm-4-9b-chat", "Qwen/Qwen2-7B-Instruct", "Qwen/Qwen2-72B-Instruct"]:
@@ -83,6 +83,9 @@ if prompt := st.chat_input():
         _model = "Meta-Llama-3.1-405B-Instruct"
         _api_key = os.environ.get('SAMBOANOVA_KEY')
         _base_url = 'https://api.sambanova.ai/v1/'
+    elif _model in ["claude-3-haiku", "llama-3.1-70b", "gpt-4o-mini"]:
+        _api_key = "duckduckgo"
+        _base_url = 'http://192.168.10.239:56789/v1/'
 
     client = OpenAI(api_key=_api_key, base_url=_base_url)
 
